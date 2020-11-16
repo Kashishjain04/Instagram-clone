@@ -72,6 +72,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className="gallery">
+                    {myPosts.length===0 && <h2>No Posts Yet</h2>}
                         {myPosts.map((post) => (
                             <img src={post.pic}
                                 key={post._id}

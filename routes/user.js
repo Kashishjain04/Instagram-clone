@@ -7,10 +7,10 @@ const Post = mongoose.model('Post');
 const User = mongoose.model('User');
 
 router.get("/user/:id", requireLogin, (req, res) => {
-    User.findById(req.params.id)
+    User.find({email: req.params.id})
         .select("-password")
         .then(user => {
-            Post.find({ postedBy: req.params.id })
+            Post.find({ postedBy: user[0]._id })
                 .populate("postedBy", "_id name")
                 .exec((err, posts) => {
                     if (err) {
@@ -19,7 +19,7 @@ router.get("/user/:id", requireLogin, (req, res) => {
                         })
                     }
                     res.json({
-                        user, posts
+                        user: user[0], posts
                     })
                 })
         }).catch((err) => {

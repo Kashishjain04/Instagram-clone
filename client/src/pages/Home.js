@@ -22,6 +22,7 @@ const Home = () => {
 
     return (
         <div className="home">
+            {posts.length===0 && <h2>No Posts To Show</h2>}
             {posts.map((post) => (
                 <div key={post._id} className="card home-card">
                     <h5 style={{padding: "7px"}}>
