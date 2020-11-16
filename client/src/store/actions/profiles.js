@@ -19,7 +19,6 @@ export const followUser = (id) => {
             })
         }).then(data => data.json())
             .then(data => {
-                console.log(data)
                 dispatch({ type: actionTypes.LOGIN_SUCCESS, user: data });
                 localStorage.setItem("user", JSON.stringify(data));
             })

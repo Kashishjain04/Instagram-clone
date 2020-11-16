@@ -105,3 +105,22 @@ export const registerFail = (err) => {
         dispatch({ type: actionTypes.REGISTER_FAIL, err: err })
     }
 }
+
+export const updatePic = (url) => {
+    return (dispatch) => {
+        fetch("/updatepic", {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            body: JSON.stringify({
+                url
+            })
+        }).then(data => data.json())
+            .then(data => {
+                dispatch({ type: actionTypes.UPDATE_PIC, user: data });
+                localStorage.setItem("user", JSON.stringify(data));
+            })
+    }
+}

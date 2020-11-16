@@ -25,11 +25,13 @@ a {
     box-shadow: 0 1px 0 0 #000;
   }
 /* Profile Page */
-.prof-header {
-    display: flex;
-    justify-content: space-around;
+.prof-header {    
     margin: 18px 0;
     border-bottom: 1px solid grey;
+}
+.prof-subheader {
+    display: flex;
+    justify-content: space-around;    
 }
 .prof-details {
     width: 108%;
@@ -66,4 +68,9 @@ a {
     top: 30px !important;
     right: 20px !important;
     left: auto !important;
+}
+
+/* File Path */
+.file-path-wrapper {
+    width: 160px;    
 }

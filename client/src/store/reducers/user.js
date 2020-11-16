@@ -23,6 +23,8 @@ const reducer = (state = initialState, action) => {
             return updateObject( state, { user: action.user, loading: false })
         case actionTypes.REGISTER_FAIL:
             return updateObject( state, { err: action.err, loading: false })        
+        case actionTypes.UPDATE_PIC:
+            return updateObject( state, { user: action.user, loading: false })
         default:
             return state;
     }

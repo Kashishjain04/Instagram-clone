@@ -1,6 +1,6 @@
 import "./main.css";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,11 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./store/actions/index";
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user)
   if (!user) {
     if (localStorage.getItem("user")) {
       dispatch(actions.loginSuccess(JSON.parse(localStorage.getItem("user"))))
+    } else{
+      history.push("/login");
     }
   }
   return (
