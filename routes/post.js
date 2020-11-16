@@ -21,7 +21,7 @@ router.get("/myposts", requireLogin, (req, res) => {
 // Get All posts
 router.get("/allpost", requireLogin, (req, res) => {
     Post.find()
-        .populate("postedBy", "name")
+        .populate("postedBy", "name email")
         .populate("comments.postedBy", "_id, name")
         .then((posts) => {
             res.json({ posts })

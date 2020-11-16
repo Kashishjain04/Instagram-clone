@@ -19,13 +19,13 @@ const UserProfile = () => {
             }
         }).then(res => res.json())
             .then((data) => {
-                if(data.error){
+                if (data.error) {
                     M.toast({ html: data.error, classes: "#c62828 red darken-2" })
                     history.push("/")
                 }
                 setUserPosts(data.posts);
                 setUser(data.user);
-            })            
+            })
         // eslint-disable-next-line
     }, [currentUser])
 
@@ -34,7 +34,7 @@ const UserProfile = () => {
             {
                 user ?
                     <div style={{ maxWidth: "550px", margin: "0 auto" }}>
-                        <div className="prof-header">
+                        <div className="prof-header prof-subheader">
                             <div>
                                 <img src="http://res.cloudinary.com/kashish/image/upload/v1605442909/nx9icbb9ql8m9lqop8gc.png"
                                     alt="profile" style={{ width: "160px", height: "160px", borderRadius: "80px" }}
@@ -50,13 +50,13 @@ const UserProfile = () => {
                                 </div>
                                 {
                                     user.followers.includes(currentUser._id) ?
-                                        <button style={{margin: "10px"}} onClick={() => dispatch(actions.unfollowUser(user._id))} className="btn waves-effect waves-light #64b5f6 blue darken-1">  Unfollow </button> :
-                                        <button style={{margin: "10px"}} onClick={() => dispatch(actions.followUser(user._id))} className="btn waves-effect waves-light #64b5f6 blue darken-1">  Follow </button>
+                                        <button style={{ margin: "10px" }} onClick={() => dispatch(actions.unfollowUser(user._id))} className="btn waves-effect waves-light #64b5f6 blue darken-1">  Unfollow </button> :
+                                        <button style={{ margin: "10px" }} onClick={() => dispatch(actions.followUser(user._id))} className="btn waves-effect waves-light #64b5f6 blue darken-1">  Follow </button>
                                 }
                             </div>
                         </div>
                         <div className="gallery">
-                            {userPosts.length===0 && <h2>No Posts Yet</h2>}
+                            {userPosts.length === 0 && <h2>No Posts Yet</h2>}
                             {userPosts.map((post) => (
                                 <img src={post.pic}
                                     key={post._id}

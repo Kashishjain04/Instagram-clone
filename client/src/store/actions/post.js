@@ -1,9 +1,25 @@
 import M from 'materialize-css';
 import * as actionTypes from './actionTypes';
 
-export const fetchAllPosts = () => {
+export const fetchFollowedPosts = () => {
     return (dispatch) => {
         fetch("/followedposts", {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                dispatch({
+                    type: actionTypes.FETCH_FOLLOWED_POSTS,
+                    posts: data
+                })
+            })
+    }
+}
+
+export const fetchAllPosts = () => {
+    return (dispatch) => {
+        fetch("/allpost", {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
@@ -47,7 +63,7 @@ export const likePost = (id) => {
         }).then(res => res.json())
             .then(() => {
                 console.log("Control at fetch call");
-                dispatch(fetchAllPosts());                
+                dispatch(fetchFollowedPosts());                
             })
             .catch((err) => {
                 console.log(err);
@@ -68,7 +84,7 @@ export const unlikePost = (id) => {
             })
         }).then(res => res.json())
             .then(() => {
-                dispatch(fetchAllPosts());                
+                dispatch(fetchFollowedPosts());                
             })
             .catch((err) => {
                 console.log(err);
@@ -87,7 +103,7 @@ export const createComment = (text, postId) => {
             body: JSON.stringify({ postId, text })
         }).then(res => res.json())
             .then(() => {
-                dispatch(fetchAllPosts());                
+                dispatch(fetchFollowedPosts());                
             })
             .catch((err) => {
                 console.log(err);
@@ -106,7 +122,7 @@ export const deleteComment = (commentId, id) => {
             body: JSON.stringify({ commentId })
         }).then(res => res.json())
             .then(() => {
-                dispatch(fetchAllPosts());                
+                dispatch(fetchFollowedPosts());                
             })
             .catch((err) => {
                 console.log(err);
@@ -132,7 +148,7 @@ export const createPost = (title, body, pic) => {
                 if (data.error) {
                     M.toast({ html: data.error, classes: "#c62828 red darken-2" })
                 } else {
-                    dispatch(fetchAllPosts());
+                    dispatch(fetchFollowedPosts());
                     M.toast({ html: "Posted Succefully", classes: "#43a047 green darken-1" })
                     window.location.pathname = "/";
                 }
@@ -151,7 +167,7 @@ export const deletePost = (id) => {
             }
         }).then(res => res.json())
             .then((data) => {
-                dispatch(fetchAllPosts());                
+                dispatch(fetchFollowedPosts());                
             })
     }
 }

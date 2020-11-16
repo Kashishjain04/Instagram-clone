@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -5,11 +6,11 @@ import * as actions from '../store/actions/index';
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.auth.user);
-
+    const user = useSelector(state => state.auth.user);    
     const renderList = () => {
         if (user) {
             return [
+                <li key="profile"><Link to="/explore">Explore</Link></li>,
                 <li key="profile"><Link to="/profile">Profile</Link></li>,
                 <li key="post"><Link to="/create">Post</Link></li>,
                 <li key="logout">

@@ -16,7 +16,7 @@ const Home = () => {
     }
 
     useEffect(() => (
-        dispatch(actions.fetchAllPosts())
+        dispatch(actions.fetchFollowedPosts())
         // eslint-disable-next-line
     ), []);
 

@@ -10,6 +10,7 @@ import CreatePost from "./pages/CreatePost";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./store/actions/index";
+import Explore from "./pages/Explore";
 
 function App() {
   const history = useHistory();
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route path="/profile/:id" component={UserProfile} />
+        <Route path="/explore" component={Explore} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/create" component={CreatePost} />
